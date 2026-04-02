@@ -125,6 +125,22 @@
     height: 100%;
     object-fit: cover;
         }
+    
+    
+    /* Animasi Teks Berjalan Cepat untuk Info Produk */
+      @keyframes marquee-fast {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+      }
+      .animate-marquee-fast {
+    display: inline-flex;
+    width: max-content;
+    animation: marquee-fast 12s linear infinite;
+      }
+      /* Agar teks tidak berhenti saat berpindah loop */
+      .animate-marquee-fast:hover {
+    animation-play-state: paused;
+      }
   </style>
 </head>
 <body class="pb-24">
@@ -139,7 +155,7 @@
     <div class="flex justify-between items-center mb-4">
       <div>
         <h1 class="text-xl font-bold text-blue-600">AFILIATE12</h1>
-        <p class="text-xs text-gray-500">Penuhi kebutuhan gaya hidupmu</p>
+        <p class="text-xs text-gray-500">INGAT YA HANYA DI NOMER 0851-6890-1775</p>
       </div>
       <button onclick="toggleCart()" class="relative p-2 text-gray-700 bg-gray-100 rounded-full">
         <i class="fa-solid fa-cart-shopping"></i>
@@ -156,10 +172,10 @@
       <div class="px-4 mt-4">
         <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-6 text-white relative overflow-hidden">
           <div class="relative z-10">
-            <span class="bg-white/20 text-xs px-2 py-1 rounded-md uppercase font-bold tracking-wider">*Diskon Terbatas*</span>
+            <span class="bg-white/20 text-xs px-2 py-1 rounded-md uppercase font-bold tracking-wider">Diskon Terbatas</span>
             <h2 class="text-2xl font-bold mt-2">Sale Gila-Gilaan!</h2>
-            <p class="text-blue-100 text-sm mt-1">*Mohon periksa kembali pesanan Anda. Setelah mengisi Alamat dan Kode Iklan, Anda akan diarahkan ke WhatsApp untuk proses pesanan dan pembayaran. Admin akan mengirimkan nomor resi setelah pembayaran Anda dikonfirmasi. Silahkan lanjutkan*</p>
-            <button class="mt-4 bg-white text-blue-600 px-4 py-2 rounded-lg text-xs font-bold">PENTING : INGAT YA HANYA DI NOMER 0851-6890-1775</button>
+            <p class="text-white-100 text-sm mt-1">*Rayakan momen spesial tanpa ribet! Paket dekorasi ini dirancang khusus untuk menciptakan atmosfer pesta yang meriah dan estetik dalam sekejap. Cocok untuk perayaan di rumah maupun di gedung.*</p>
+            <button class="mt-4 bg-white text-blue-600 px-4 py-2 rounded-lg text-xs font-bold">boleh juga datang kerumah</button>
           </div>
           <i class="fa-solid fa-bag-shopping absolute -right-4 -bottom-4 text-8xl text-white/10 rotate-12"></i>
         </div>
@@ -167,11 +183,33 @@
 
       <!-- Grid Produk -->
       <div class="mt-6 px-4">
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="font-bold text-gray-800"></h3>
-          <a href="#" class="text-blue-600 text-xs font-bold">Tebat Jaya, Kec. Buay Madang</a>
+        <!-- Header Bagian Produk -->
+        <div class="flex justify-between items-end mb-2">
+          <div>
+            <h3 class="font-black text-xl text-gray-800 tracking-tight"></h3>
+            <p class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Koleksi Terbaru 2026</p>
+          </div>
+          <div class="text-right">
+            <span class="block text-[10px] text-gray-400 font-bold uppercase">Lokasi Toko:</span>
+            <a href="#" class="text-blue-600 text-xs font-bold flex items-center gap-1">
+              <i class="fa-solid fa-location-dot"></i> Tebat Jaya, Kec. Buay Madang
+            </a>
+          </div>
         </div>
+
+        <!-- Teks Berjalan Tambahan (Info Stok/Promo Produk) -->
+        <div class="mb-4 bg-blue-50 py-1.5 rounded-lg overflow-hidden border border-blue-100">
+          <div class="whitespace-nowrap flex animate-marquee-fast text-[11px] font-bold text-blue-700 uppercase italic">
+            <span class="mx-6">✨ Stok Terbatas! Segera amankan produk pilihanmu ✨</span>
+            <span class="mx-6">🚚 Gratis Ongkir untuk wilayah Buay Madang & sekitarnya 🚚</span>
+            <span class="mx-6">🔥 Diskon tambahan untuk pembelian paket bundel 🔥</span>
+            <span class="mx-6">✅ Produk 100% Original & Bergaransi ✅</span>
+          </div>
+        </div>
+
+        <!-- Grid Produk -->
         <div id="product-container" class="grid grid-cols-2 gap-4">
+          <!-- Item produk akan dimuat di sini oleh JavaScript -->
         </div>
       </div>
     </div>
@@ -192,11 +230,6 @@
     <!-- Tampilan Musik -->
     <div id="music-view" class="hidden px-4 py-6">
       <!-- TULISAN BERJALAN RINGAN -->
-      <div class="marquee-container">
-        <div class="marquee-text">
-          Selamat Datang di Afiliate12 • Koleksi Parfum Premium Aroma Tahan Lama • Bayar di Tempat (COD) •
-        </div>
-      </div>
 
       <!-- HEADER (ANIMASI MUSIK DIHAPUS) -->
       <div class="flex justify-between items-center mb-6">
@@ -221,31 +254,6 @@
 
         <div class="mt-6 w-full bg-gray-100 h-1 rounded-full overflow-hidden">
           <div id="music-progress" class="bg-blue-600 h-full w-0 transition-all duration-300"></div>
-        </div>
-      </div>
-
-      <!-- GALERI FOTO SLIDE (UKURAN DIPERKECIL) -->
-      <h4 class="font-bold text-gray-700 mb-4 px-1 text-xs uppercase tracking-wider">*Produk Unggulan*</h4>
-      <div class="slider-container mb-8 flex overflow-x-auto snap-x gap-3 no-scrollbar">
-        <!-- Gambar 1 -->
-        <div class="flex-none w-[65%] snap-center aspect-square bg-gray-100 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
-          <img src="https://www.dropbox.com/scl/fi/vi2y5sp33abl3fjs1ic2i/1.png?rlkey=1myt6if94e50qw231nhlcrh0b&st=uu0o7y2t&dl=1" loading="lazy" alt="Produk 1" class="w-full h-full object-cover">
-        </div>
-        <!-- Gambar 2 -->
-        <div class="flex-none w-[65%] snap-center aspect-square bg-gray-100 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
-          <img src="https://www.dropbox.com/scl/fi/qgalmo41bd27ti8fm2mh9/2.png?rlkey=nduzzn20hvs2fc2ggxpjzmqbd&st=8l4hghhd&dl=1" loading="lazy" alt="Produk 2" class="w-full h-full object-cover">
-        </div>
-        <!-- Gambar 3 -->
-        <div class="flex-none w-[65%] snap-center aspect-square bg-gray-100 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
-          <img src="https://www.dropbox.com/scl/fi/z3m5oy1eqmhjun56n1rcx/3.png?rlkey=w182bafpjc1bwjlch45vkdsi9&st=7tz77ea1&dl=1" loading="lazy" alt="Produk 3" class="w-full h-full object-cover">
-        </div>
-        <!-- Gambar 4 -->
-        <div class="flex-none w-[65%] snap-center aspect-square bg-gray-100 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
-          <img src="https://www.dropbox.com/scl/fi/sqncb2yaxnemhpd2hbrpa/4.png?rlkey=vextp3p6a1o01hkbqjvi8bzwa&st=hs8q0z4d&dl=1" loading="lazy" alt="Produk 4" class="w-full h-full object-cover">
-        </div>
-        <!-- Gambar 5 -->
-        <div class="flex-none w-[65%] snap-center aspect-square bg-gray-100 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
-          <img src="https://www.dropbox.com/scl/fi/y5w9nt4nr97vvfohnoyry/5.png?rlkey=m0k3nitbw0jvktcbqfcysku43&st=rnqicpna&dl=1" loading="lazy" alt="Produk 3" class="w-full h-full object-cover">
         </div>
       </div>
 
@@ -435,375 +443,8 @@
     </button>
   </nav>
 
-  <script>
-    const products = [
-        { id: 1, name: "Headphone Pro Wireless", category: "Elektronik", price: 1200000, img: "https://www.dropbox.com/scl/fi/jxmfruq9lrxx9qztefp4o/1.png?rlkey=x4zzks0hdgf393rc5ae69jqep&st=ug8e16z8&dl=1" },
-        { id: 2, name: "Smart Watch S3", category: "Gadget", price: 2500000, img: "https://www.dropbox.com/scl/fi/06qu9o3gnrowsxc4c576s/2.png?rlkey=nr1egorhxbktiaqjp71v8czz0&st=rai2us18&dl=1" },
-        { id: 3, name: "Sepatu Lari Elite", category: "Lifestyle", price: 850000, img: "https://www.dropbox.com/scl/fi/421h5wxx2mibhf21ivqbj/3.png?rlkey=35jfssm26k8052cs298wrwv0e&st=d13muxr3&dl=1" },
-        { id: 4, name: "Kacamata Hitam UV", category: "Fashion", price: 450000, img: "https://www.dropbox.com/scl/fi/2rlndqy7sf750iqu3smwp/4.png?rlkey=1l03t1nnlci4v6r2fk0ldqwe5&st=ytxoms5t&dl=1" },
-        { id: 5, name: "Mekanikal Keyboard", category: "Gadget", price: 1100000, img: "https://www.dropbox.com/scl/fi/j1vpauedpswvz2j3g3ump/5.png?rlkey=akycj3ho0js8ed9osrfyb4alt&st=8rs4zdw3&dl=1" },
-        { id: 6, name: "Headphone Pro Wireless", category: "Elektronik", price: 1200000, img: "https://www.dropbox.com/scl/fi/vxxvcr0ffjco5kgy093ol/6.png?rlkey=vhf94kgkuw3w74cfxrhhot8l7&st=j89u813w&dl=1" },
-        { id: 7, name: "Smart Watch S3", category: "Gadget", price: 2500000, img: "https://www.dropbox.com/scl/fi/9m1d65fdv5bpzy7leem0f/7.png?rlkey=49q5rsijiwa11jgrqg30652ik&st=bi8n3shw&dl=1" },
-        { id: 8, name: "Sepatu Lari Elite", category: "Lifestyle", price: 850000, img: "https://www.dropbox.com/scl/fi/jtnwykhqevr4ajkmxiqeo/8.png?rlkey=8q7we5658nyrgmm8sqthi6vy4&st=q1404a1i&dl=1" },
-        { id: 9, name: "Kacamata Hitam UV", category: "Fashion", price: 450000, img: "https://www.dropbox.com/scl/fi/frl4kct5brxwfq3npmdfx/9.png?rlkey=lvgzs7pwvxxbhwctb0esuxrtb&st=09brjs1z&dl=1" },
-        { id: 10, name: "Mekanikal Keyboard", category: "Gadget", price: 1100000, img: "https://www.dropbox.com/scl/fi/wxkcve7c7fowjxpianhhn/10.png?rlkey=oshhzzat51z8k83cw8ezk6my7&st=iulrvpgm&dl=1" }
-    ];
-    
-    const musicList = [
-    { id: 1, title: "Berita hari ini", artist: "Cards Id Purwanto", duration: "2:24", url: "https://www.dropbox.com/scl/fi/cxlidxlki5qd8y7e4graw/1.mp3?rlkey=p0r4arad6tpk1iy1fc2godslj&st=jszqap1h&dl=1" },
-    { id: 2, title: "Kata kata indah hari ini", artist: "Cards Id Purwanto", duration: "3:10", url: "https://www.dropbox.com/scl/fi/p8x93iv5x8utru8yhf9g4/2.mp3?rlkey=5xis8n9u92mjw7do1fbunen9f&st=wjozt2ru&dl=1" },
-    { id: 3, title: "Tutorial terbaik khusus hari ini", artist: "Cards Id Purwanto", duration: "4:05", url: "https://www.dropbox.com/scl/fi/1n43dgeaa0qxp8lfn0xih/3.mp3?rlkey=3au43htu4y9li7ge9fkqh4v8x&st=srvxl8hs&dl=1" },
-    { id: 4, title: "Kata mutiara hari ini", artist: "Cards Id Purwanto", duration: "3:45", url: "https://www.dropbox.com/scl/fi/krjo7atz5pyzglqbzetyd/4.mp3?rlkey=vptqbobawgq6f7r7h4ca27g2v&st=kz23xejn&dl=1" },
-    { id: 5, title: "Lagu pop indonesia", artist: "Cards Id Purwanto", duration: "2:58", url: "https://www.dropbox.com/scl/fi/we3cwmv2wyfrv55limm6s/5.mp3?rlkey=3lfaqdmljefiij8w51rbj2ctv&st=wpl6fks6&dl=1" },
-    { id: 6, title: "Lagu dangdut indonesia", artist: "Cards Id Purwanto", duration: "3:15", url: "https://www.dropbox.com/scl/fi/wwir4ykfx03p8tgibdnh4/6.mp3?rlkey=6owrkxk6qkol04gljy15epxcz&st=mvrsnm8d&dl=1" },
-    { id: 7, title: "Lagu anak anak", artist: "Cards Id Purwanto", duration: "5:20", url: "https://www.dropbox.com/scl/fi/vzx5zzayq3ot8m72uxdsz/7.mp3?rlkey=p1ba6alm2l3lnpld7svkfm9h9&st=vtopkum5&dl=1" },
-    { id: 8, title: "Lagu pilihan islami", artist: "Cards Id Purwanto", duration: "3:30", url: "https://www.dropbox.com/scl/fi/89ng9x5q1edwlj2cuzhzp/8.mp3?rlkey=nu1fwx18j2yz0vg2aeercu5qw&st=r4wewi0x&dl=1" },
-    { id: 9, title: "Koleksi lagu luar negeri", artist: "Cards Id Purwanto", duration: "4:12", url: "https://www.dropbox.com/scl/fi/i5q2acj6k8zna1ld808db/9.mp3?rlkey=gwq9fgctt3tl2xpt0gimm2yhl&st=xy3mc94r&dl=1" },
-    { id: 10, title: "Pidato singkat khusus hari ini", artist: "Cards Id Purwanto", duration: "2:50", url: "https://www.dropbox.com/scl/fi/0ab6k2rbq6laien92lf61/10.mp3?rlkey=q63n4rlle0nb7wi4dzvb2vvm8&st=bl9a2ych&dl=1" }
-    ];
-    
-    
-    let cart = [];
-    let wishlist = [];
-    let currentCategory = 'All';
-    let audioPlayer = new Audio();
-    let currentPlaying = null;
-    let isPlaying = false;
-    
-    window.onload = () => {
-        renderProducts(products);
-        renderSongs();
-        updateCartUI();
-    
-        audioPlayer.ontimeupdate = () => {
-            const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-            document.getElementById('music-progress').style.width = `${progress || 0}%`;
-        };
-    
-        audioPlayer.onended = () => nextSong();
-    };
-    
-    function renderProducts(data) {
-        const container = document.getElementById('product-container');
-        if (!container) return;
-        container.innerHTML = '';
-        data.forEach(product => {
-            const isFavorite = wishlist.includes(product.id);
-            container.innerHTML += `
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 group">
-                    <div class="relative h-40 overflow-hidden">
-                        <img src="${product.img}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        <button onclick="toggleWishlist(${product.id})" class="absolute top-2 right-2 bg-white/80 p-1.5 rounded-full ${isFavorite ? 'text-red-500' : 'text-gray-400'} shadow-sm">
-                            <i class="${isFavorite ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="p-3">
-                        <span class="text-[10px] font-bold text-blue-500 uppercase">${product.category}</span>
-                        <h4 class="text-sm font-semibold text-gray-800 line-clamp-1">${product.name}</h4>
-                        <p class="text-blue-600 font-bold mt-1">Rp ${product.price.toLocaleString('id-ID')}</p>
-                        <button onclick="addToCart(${product.id})" class="w-full mt-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs font-bold text-gray-700 active:bg-blue-600 active:text-white transition-colors">
-                            + Keranjang
-                        </button>
-                    </div>
-                </div>
-            `;
-        });
-    }
-    
-    function toggleWishlist(productId) {
-        const index = wishlist.indexOf(productId);
-        if (index > -1) wishlist.splice(index, 1);
-        else wishlist.push(productId);
-        
-        renderProducts(currentCategory === 'All' ? products : products.filter(p => p.category === currentCategory));
-        if (!document.getElementById('wishlist-view').classList.contains('hidden')) renderWishlist();
-    }
-    
-    function renderWishlist() {
-        const container = document.getElementById('wishlist-items');
-        const actionContainer = document.getElementById('wishlist-actions');
-        if (!container || !actionContainer) return;
-        
-        const favoriteProducts = products.filter(p => wishlist.includes(p.id));
-        
-        if (favoriteProducts.length === 0) {
-            container.innerHTML = '<p class="text-gray-500 text-center py-10 col-span-2">Belum ada barang favorit.</p>';
-            actionContainer.innerHTML = '';
-            return;
-        }
-    
-        // Tombol Tambah Semua
-        actionContainer.innerHTML = `
-            <button onclick="addAllWishlistToCart()" class="text-[10px] font-bold bg-blue-600 text-white px-3 py-1.5 rounded-full shadow-sm active:scale-95 transition-transform">
-                Tambah Semua ke Keranjang
-            </button>
-        `;
-    
-        container.innerHTML = '';
-        favoriteProducts.forEach(product => {
-            container.innerHTML += `
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
-                    <div class="relative h-32 overflow-hidden">
-                        <img src="${product.img}" class="w-full h-full object-cover">
-                        <button onclick="toggleWishlist(${product.id})" class="absolute top-2 right-2 bg-white/80 p-1.5 rounded-full text-red-500 shadow-sm">
-                            <i class="fa-solid fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="p-3 text-center">
-                        <h4 class="text-xs font-semibold text-gray-800 line-clamp-1">${product.name}</h4>
-                        <p class="text-blue-600 font-bold text-xs mt-1">Rp ${product.price.toLocaleString('id-ID')}</p>
-                    </div>
-                </div>
-            `;
-        });
-    }
-    
-    function addAllWishlistToCart() {
-        const favoriteProducts = products.filter(p => wishlist.includes(p.id));
-        if (favoriteProducts.length === 0) return;
-    
-        favoriteProducts.forEach(product => {
-            const existingItem = cart.find(item => item.id === product.id);
-            if (existingItem) existingItem.quantity += 1;
-            else cart.push({ ...product, quantity: 1 });
-        });
-    
-        updateCartUI();
-        showNotification(`${favoriteProducts.length} produk favorit ditambahkan!`);
-    }
-    
-    function addToCart(productId) {
-        const product = products.find(p => p.id === productId);
-        const existingItem = cart.find(item => item.id === productId);
-        if (existingItem) existingItem.quantity += 1;
-        else cart.push({ ...product, quantity: 1 });
-        updateCartUI();
-        showNotification("Produk ditambahkan ke keranjang!");
-    }
-    
-    function updateCartUI() {
-        const cartItemsContainer = document.getElementById('cart-items');
-        const totalDisplay = document.getElementById('cart-total');
-        const badgeCount = document.getElementById('cart-count-badge');
-        if (!cartItemsContainer) return;
-        cartItemsContainer.innerHTML = '';
-        let total = 0, count = 0;
-        if (cart.length === 0) {
-            cartItemsContainer.innerHTML = `<div class="text-center py-20"><i class="fa-solid fa-cart-shopping text-4xl text-gray-200 mb-2"></i><p class="text-gray-400 text-sm">Keranjang masih kosong</p></div>`;
-        } else {
-            cart.forEach(item => {
-                total += item.price * item.quantity;
-                count += item.quantity;
-                cartItemsContainer.innerHTML += `
-                    <div class="flex items-center space-x-4 bg-gray-50 p-3 rounded-xl">
-                        <img src="${item.img}" class="w-16 h-16 rounded-lg object-cover">
-                        <div class="flex-1">
-                            <h4 class="text-sm font-bold text-gray-800 line-clamp-1">${item.name}</h4>
-                            <p class="text-blue-600 text-xs font-bold">Rp ${item.price.toLocaleString('id-ID')} (x${item.quantity})</p>
-                        </div>
-                        <button onclick="removeFromCart(${item.id})" class="text-red-400 p-2"><i class="fa-solid fa-trash-can text-sm"></i></button>
-                    </div>
-                `;
-            });
-        }
-        totalDisplay.innerText = `Rp ${total.toLocaleString('id-ID')}`;
-        badgeCount.innerText = count;
-    }
-    
-    function removeFromCart(id) {
-        cart = cart.filter(i => i.id !== id);
-        updateCartUI();
-    }
-    
-    function toggleCart() {
-        const modal = document.getElementById('cart-modal');
-        const content = document.getElementById('cart-content');
-        if (modal.classList.contains('hidden')) {
-            modal.classList.remove('hidden');
-            setTimeout(() => content.style.transform = 'translate(-50%, 0)', 10);
-        } else {
-            content.style.transform = 'translate(-50%, 100%)';
-            setTimeout(() => modal.classList.add('hidden'), 300);
-        }
-    }
-    
-    function handleSearch() {
-        const query = document.getElementById('search-input').value.toLowerCase();
-        renderProducts(products.filter(p => p.name.toLowerCase().includes(query)));
-    }
-    
-    function renderSongs() {
-        const container = document.getElementById('song-list');
-        if (!container) return;
-        container.innerHTML = '';
-        musicList.forEach(song => {
-            const isThisPlaying = currentPlaying?.id === song.id && isPlaying;
-            container.innerHTML += `
-                <div onclick="selectSong(${song.id})" class="flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-transparent ${isThisPlaying ? 'border-blue-200 bg-blue-50/50' : ''} active:scale-95 transition-all cursor-pointer">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-blue-600">
-                            <i class="fa-solid ${isThisPlaying ? 'fa-volume-high' : 'fa-play'}"></i>
-                        </div>
-                        <div>
-                            <h5 class="text-sm font-bold ${isThisPlaying ? 'text-blue-600' : 'text-gray-800'}">${song.title}</h5>
-                            <p class="text-xs text-gray-400">${song.artist}</p>
-                        </div>
-                    </div>
-                    <span class="text-[10px] font-medium text-gray-400">${song.duration}</span>
-                </div>
-            `;
-        });
-    }
-    
-    function selectSong(id) {
-        const song = musicList.find(s => s.id === id);
-        if (currentPlaying?.id === id) {
-            togglePlayMain();
-            return;
-        }
-        currentPlaying = song;
-        audioPlayer.src = song.url;
-        audioPlayer.play();
-        isPlaying = true;
-        updatePlayerUI();
-        renderSongs();
-        showNotification(`Memutar: ${song.title}`);
-    }
-    
-    function togglePlayMain() {
-        if (!currentPlaying) { selectSong(musicList[0].id); return; }
-        if (isPlaying) { audioPlayer.pause(); isPlaying = false; }
-        else { audioPlayer.play(); isPlaying = true; }
-        updatePlayerUI();
-        renderSongs();
-    }
-    
-    function updatePlayerUI() {
-        const btn = document.getElementById('master-play-btn');
-        const art = document.getElementById('music-art');
-        const anim = document.getElementById('music-animation');
-        document.getElementById('current-title').innerText = currentPlaying.title;
-        document.getElementById('current-artist').innerText = currentPlaying.artist;
-        if (isPlaying) {
-            btn.innerHTML = '<i class="fa-solid fa-pause text-xl"></i>';
-            art.classList.add('animate-spin-slow');
-            anim.classList.remove('hidden');
-        } else {
-            btn.innerHTML = '<i class="fa-solid fa-play text-xl ml-1"></i>';
-            art.classList.remove('animate-spin-slow');
-            anim.classList.add('hidden');
-        }
-    }
-    
-    function nextSong() {
-        if (!currentPlaying) return;
-        let index = musicList.findIndex(s => s.id === currentPlaying.id);
-        index = (index + 1) % musicList.length;
-        selectSong(musicList[index].id);
-    }
-    
-    function prevSong() {
-        if (!currentPlaying) return;
-        let index = musicList.findIndex(s => s.id === currentPlaying.id);
-        index = (index - 1 + musicList.length) % musicList.length;
-        selectSong(musicList[index].id);
-    }
-    
-    function navigate(viewName) {
-        ['home-view', 'wishlist-view', 'profile-view', 'music-view'].forEach(v => document.getElementById(v)?.classList.add('hidden'));
-        document.getElementById(`${viewName}-view`)?.classList.remove('hidden');
-        const navIds = ['nav-home', 'nav-wishlist', 'nav-profile', 'nav-music'];
-        navIds.forEach(id => {
-            const btn = document.getElementById(id);
-            if (btn) {
-                const isActive = id === `nav-${viewName}`;
-                btn.classList.toggle('text-blue-600', isActive);
-                btn.classList.toggle('text-gray-400', !isActive);
-            }
-        });
-        if (viewName === 'wishlist') renderWishlist();
-    }
-    
-    function showNotification(text) {
-        const notif = document.getElementById('notification');
-        if (!notif) return;
-        notif.innerText = text;
-        notif.style.transform = 'translate(-50%, 80px)';
-        setTimeout(() => notif.style.transform = 'translate(-50%, -80px)', 2000);
-    }
-    
-    function checkout() {
-    const memberInput = document.getElementById('member-code');
-    const memberError = document.getElementById('member-error');
-    const memberValue = memberInput ? memberInput.value.trim() : "";
-    
-    // Tambahan untuk Alamat
-    const addressInput = document.getElementById('address');
-    const addressError = document.getElementById('address-error');
-    const addressValue = addressInput ? addressInput.value.trim() : "";
-    
-    if (cart.length === 0) return;
-    
-    // Validasi Kode Iklan
-    if (memberValue === "") {
-        memberInput.classList.add('border-red-500');
-        memberError.classList.remove('hidden');
-        memberInput.focus();
-        return; 
-    } else {
-        memberInput.classList.remove('border-red-500');
-        memberError.classList.add('hidden');
-    }
-    
-    // Validasi Alamat (Baru)
-    if (addressValue === "") {
-        addressInput.classList.add('border-red-500');
-        if (addressError) addressError.classList.remove('hidden');
-        addressInput.focus();
-        return;
-    } else {
-        addressInput.classList.remove('border-red-500');
-        if (addressError) addressError.classList.add('hidden');
-    }
-    
-    const phoneNumber = "6285168901775"; 
-    let message = "*PESANAN BARU*\n";
-    message += "------------------------------\n";
-    message += `*KODE IKLAN:* ${memberValue.toUpperCase()}\n`;
-    message += `*ALAMAT:* ${addressValue}\n`; // Menampilkan alamat di WA
-    message += "------------------------------\n\n";
-    
-    let total = 0;
-    cart.forEach((item, index) => {
-        const subtotal = item.price * item.quantity;
-        total += subtotal;
-        message += `${index + 1}. *${item.name}*\n`;
-        message += `   Qty: ${item.quantity} x Rp ${item.price.toLocaleString('id-ID')}\n`;
-        message += `   Subtotal: Rp ${subtotal.toLocaleString('id-ID')}\n\n`;
-    });
-    
-    let finalTotal = total;
-    if (memberValue.toUpperCase() === "TETANGGAKU") {
-        const discount = total * 0.1;
-        finalTotal = total - discount;
-        message += `Total Awal: Rp ${total.toLocaleString('id-ID')}\n`;
-        message += `Diskon Member (10%): -Rp ${discount.toLocaleString('id-ID')}\n`;
-    }
-    
-    message += "------------------------------\n";
-    message += `*TOTAL PEMBAYARAN: Rp ${finalTotal.toLocaleString('id-ID')}*\n`;
-    message += "------------------------------\n";
-    message += "_Mohon tunggu konfirmasi admin untuk instruksi pembayaran._";
-    
-    // Kirim ke WhatsApp
-    window.open(`https://wa.me/6285168901775?text=${encodeURIComponent(message)}`, '_blank');
-    
-    // Reset Cart
-    cart = []; 
-    if (typeof updateCartUI === "function") updateCartUI(); 
-    if (typeof toggleCart === "function") toggleCart();
-    if (typeof showNotification === "function") showNotification("Pesanan dikirim ke WhatsApp!");
-    }
-  </script>
+  <script src="products.js"></script>
+  <script src="music.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
