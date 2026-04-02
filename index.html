@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="id" class="bg-gray-200 flex justify-center">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AFILIATE12 - Toko Online Tebajaya Belitang</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+    
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8fafc;
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+        min-height: 100vh;
+        position: relative;
+        box-shadow: 0 0 50px rgba(0,0,0,0.15);
+        overflow-x: hidden;
+    }
+    
+    .fixed-in-frame {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 480px;
+    }
+    
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .cart-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #ef4444;
+        color: white;
+        font-size: 10px;
+        padding: 2px 5px;
+        border-radius: 50%;
+    }
+    
+    .category-pill.active {
+        background-color: #3b82f6;
+        color: white;
+    }
+    
+    #notification {
+        transition: transform 0.3s ease-in-out;
+        left: 50%;
+        transform: translate(-50%, -80px);
+    }
+    
+    .music-bar {
+        width: 3px;
+        height: 15px;
+        background: #3b82f6;
+        margin: 0 1px;
+        border-radius: 10px;
+        animation: bounce 1s ease-in-out infinite;
+    }
+    @keyframes bounce {
+        0%, 100% { height: 5px; }
+        50% { height: 20px; }
+    }
+    
+    .animate-spin-slow {
+        animation: spin 8s linear infinite;
+    }
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    
+        .marquee-container {
+    overflow: hidden;
+    background: #2563eb;
+    border-radius: 9999px;
+    padding: 8px 0;
+    margin-bottom: 24px;
+        }
+        .marquee-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 15s linear infinite;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+        }
+        @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+        }
+        
+        /* CSS Slider Ringan */
+        .slider-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    gap: 12px;
+    padding-bottom: 10px;
+        }
+        .slider-container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+        }
+        .slider-item {
+    flex: 0 0 85%; /* Menampilkan 85% lebar kotak agar gambar selanjutnya terlihat sedikit */
+    scroll-snap-align: center;
+    aspect-ratio: 1 / 1;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: #f3f4f6;
+    border: 1px solid #f9fafb;
+        }
+        .img-fast {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+        }
+    
+    
+    /* Animasi Teks Berjalan Cepat untuk Info Produk */
+      @keyframes marquee-fast {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+      }
+      .animate-marquee-fast {
+    display: inline-flex;
+    width: max-content;
+    animation: marquee-fast 12s linear infinite;
+      }
+      /* Agar teks tidak berhenti saat berpindah loop */
+      .animate-marquee-fast:hover {
+    animation-play-state: paused;
+      }
+  </style>
+</head>
+<body class="pb-24">
+
+  <!-- Notifikasi Toast -->
+  <div id="notification" class="fixed top-4 z-[100] bg-green-600 text-white px-6 py-2 rounded-full shadow-lg text-sm font-medium w-max">
+    Produk ditambahkan ke keranjang!
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white shadow-sm px-4 py-4">
+    <div class="flex justify-between items-center mb-4">
+      <div>
+        <h1 class="text-xl font-bold text-blue-600">AFILIATE12</h1>
+        <p class="text-xs text-gray-500">INGAT YA HANYA DI NOMER 0851-6890-1775</p>
+      </div>
+      <button onclick="toggleCart()" class="relative p-2 text-gray-700 bg-gray-100 rounded-full">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cart-count-badge" class="cart-badge">0</span>
+      </button>
+    </div>
+
+  </header>
+
+  <!-- Konten Utama -->
+  <main id="main-content">
+    <!-- Tampilan Beranda -->
+    <div id="home-view">
+      <div class="px-4 mt-4">
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-6 text-white relative overflow-hidden">
+          <div class="relative z-10">
+            <span class="bg-white/20 text-xs px-2 py-1 rounded-md uppercase font-bold tracking-wider">Diskon Terbatas</span>
+            <h2 class="text-2xl font-bold mt-2">Sale Gila-Gilaan!</h2>
+            <p class="text-white-100 text-sm mt-1">*Rayakan momen spesial tanpa ribet! Paket dekorasi ini dirancang khusus untuk menciptakan atmosfer pesta yang meriah dan estetik dalam sekejap. Cocok untuk perayaan di rumah maupun di gedung.*</p>
+            <button class="mt-4 bg-white text-blue-600 px-4 py-2 rounded-lg text-xs font-bold">boleh juga datang kerumah</button>
+          </div>
+          <i class="fa-solid fa-bag-shopping absolute -right-4 -bottom-4 text-8xl text-white/10 rotate-12"></i>
+        </div>
+      </div>
+
+      <!-- Grid Produk -->
+      <div class="mt-6 px-4">
+        <!-- Header Bagian Produk -->
+        <div class="flex justify-between items-end mb-2">
+          <div>
+            <h3 class="font-black text-xl text-gray-800 tracking-tight"></h3>
+            <p class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Koleksi Terbaru 2026</p>
+          </div>
+          <div class="text-right">
+            <span class="block text-[10px] text-gray-400 font-bold uppercase">Lokasi Toko:</span>
+            <a href="#" class="text-blue-600 text-xs font-bold flex items-center gap-1">
+              <i class="fa-solid fa-location-dot"></i> Tebat Jaya, Kec. Buay Madang
+            </a>
+          </div>
+        </div>
+
+        <!-- Teks Berjalan Tambahan (Info Stok/Promo Produk) -->
+        <div class="mb-4 bg-blue-50 py-1.5 rounded-lg overflow-hidden border border-blue-100">
+          <div class="whitespace-nowrap flex animate-marquee-fast text-[11px] font-bold text-blue-700 uppercase italic">
+            <span class="mx-6">✨ Stok Terbatas! Segera amankan produk pilihanmu ✨</span>
+            <span class="mx-6">🚚 Gratis Ongkir untuk wilayah Buay Madang & sekitarnya 🚚</span>
+            <span class="mx-6">🔥 Diskon tambahan untuk pembelian paket bundel 🔥</span>
+            <span class="mx-6">✅ Produk 100% Original & Bergaransi ✅</span>
+          </div>
+        </div>
+
+        <!-- Grid Produk -->
+        <div id="product-container" class="grid grid-cols-2 gap-4">
+          <!-- Item produk akan dimuat di sini oleh JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Tampilan Favorit -->
+    <div id="wishlist-view" class="hidden px-4 py-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold">*Products Tersimpan*</h2>
+        <div id="wishlist-actions">
+          <!-- Tombol Tambah Semua akan muncul di sini -->
+        </div>
+      </div>
+      <div id="wishlist-items" class="grid grid-cols-2 gap-4">
+        <p class="text-gray-500 text-center py-10 col-span-2">Belum ada barang tersimpan.</p>
+      </div>
+    </div>
+
+    <!-- Tampilan Musik -->
+    <div id="music-view" class="hidden px-4 py-6">
+      <!-- TULISAN BERJALAN RINGAN -->
+
+      <!-- HEADER (ANIMASI MUSIK DIHAPUS) -->
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-bold text-gray-800"></h2>
+      </div>
+
+      <!-- PLAYER MUSIK -->
+      <div id="active-player" class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 mb-8 text-center">
+        <div class="w-32 h-32 mx-auto rounded-2xl bg-blue-50 flex items-center justify-center mb-4 overflow-hidden shadow-inner">
+          <i id="music-art" class="fa-solid fa-compact-disc text-6xl text-blue-200"></i>
+        </div>
+        <h3 id="current-title" class="font-bold text-gray-800 text-sm">Pilih Lagu</h3>
+        <p id="current-artist" class="text-gray-400 text-[10px] mb-6">Temukan musik favoritmu</p>
+
+        <div class="flex justify-center items-center space-x-8">
+          <button onclick="prevSong()" class="text-gray-400 active:text-blue-600"><i class="fa-solid fa-backward-step text-xl"></i></button>
+          <button id="master-play-btn" onclick="togglePlayMain()" class="w-14 h-14 bg-blue-600 rounded-full text-white flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+            <i class="fa-solid fa-play text-xl ml-1"></i>
+          </button>
+          <button onclick="nextSong()" class="text-gray-400 active:text-blue-600"><i class="fa-solid fa-forward-step text-xl"></i></button>
+        </div>
+
+        <div class="mt-6 w-full bg-gray-100 h-1 rounded-full overflow-hidden">
+          <div id="music-progress" class="bg-blue-600 h-full w-0 transition-all duration-300"></div>
+        </div>
+      </div>
+
+      <h4 class="font-bold text-gray-700 mb-4 px-1 text-sm">*PUTAR DAN DENGARKAN*</h4>
+      <div id="song-list" class="space-y-3"></div>
+    </div>
+
+    <!-- Tampilan Profil -->
+    <div id="profile-view" class="hidden px-4 py-6">
+      <div class="text-center mb-8">
+        <div class="w-24 h-24 bg-blue-600 rounded-2xl mx-auto flex items-center justify-center mb-4 shadow-lg">
+          <i class="fa-solid fa-user text-4xl text-white"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800">AFILIATE12</h2>
+        <p class="text-blue-600 font-medium text-sm">Premium Perfume & Lifestyle</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 mb-8">
+        <div class="bg-white p-3 rounded-xl shadow-sm text-center">
+          <p class="text-xs text-gray-500">*BERDIRI*</p>
+          <p class="font-bold text-gray-800">2015</p>
+        </div>
+        <div class="bg-white p-3 rounded-xl shadow-sm text-center">
+          <p class="text-xs text-gray-500">*CABANG*</p>
+          <p class="font-bold text-gray-800">12+</p>
+        </div>
+        <div class="bg-white p-3 rounded-xl shadow-sm text-center">
+          <p class="text-xs text-gray-500">*PRODUK*</p>
+          <p class="font-bold text-gray-800">50+</p>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="p-4 bg-white rounded-xl shadow-sm">
+          <h3 class="text-xs font-bold text-gray-400 uppercase mb-2 tracking-wider"></h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Afiliate12 adalah destinasi utama bagi para pecinta wewangian premium yang mengutamakan kualitas dan karakter. Kami hadir untuk memenuhi kebutuhan gaya hidup Anda melalui koleksi parfum eksklusif yang diracik dengan standar tinggi, memastikan setiap semprotan memberikan aroma yang mewah, elegan, dan memiliki daya tahan yang luar biasa.
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="text-xs font-bold text-gray-400 uppercase ml-1 tracking-wider text-left">
+
+          </h3>
+          <!-- WHATSAPP -->
+          <a href="https://wa.me" class="w-full flex items-center justify-between p-4 bg-white rounded-xl shadow-sm hover:bg-gray-50 transition">
+            <div class="flex items-center space-x-3">
+              <i class="fa-brands fa-whatsapp text-green-500 text-xl"></i>
+              <div class="text-left">
+                <p class="text-xs text-gray-500">WhatsApp Official</p>
+                <p class="font-medium text-gray-800">0851-6890-1775</p>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-gray-300"></i>
+          </a>
+
+          <!-- MEDIA SOSIAL GRID 4 KOLOM -->
+          <div class="grid grid-cols-4 gap-2 mt-2">
+            <a href="https://facebook.com" target="_blank" class="flex flex-col items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:bg-gray-50 transition border-b-4 border-blue-700">
+              <i class="fa-brands fa-facebook text-blue-700 text-xl mb-1"></i>
+              <span class="text-[10px] font-bold text-gray-600">FB</span>
+            </a>
+            <a href="https://instagram.com" target="_blank" class="flex flex-col items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:bg-gray-50 transition border-b-4 border-pink-500">
+              <i class="fa-brands fa-instagram text-pink-500 text-xl mb-1"></i>
+              <span class="text-[10px] font-bold text-gray-600">IG</span>
+            </a>
+            <a href="https://tiktok.com" target="_blank" class="flex flex-col items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:bg-gray-50 transition border-b-4 border-black">
+              <i class="fa-brands fa-tiktok text-black text-xl mb-1"></i>
+              <span class="text-[10px] font-bold text-gray-600">TT</span>
+            </a>
+            <a href="https://youtube.com" target="_blank" class="flex flex-col items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:bg-gray-50 transition border-b-4 border-red-600">
+              <i class="fa-brands fa-youtube text-red-600 text-xl mb-1"></i>
+              <span class="text-[10px] font-bold text-gray-600">YT</span>
+            </a>
+          </div>
+
+          <!-- GMAIL, WEBSITE & LOKASI -->
+          <a href="mailto:afiliate12@gmail.com" class="w-full flex items-center justify-between p-4 bg-white rounded-xl shadow-sm hover:bg-gray-50 transition">
+            <div class="flex items-center space-x-3">
+              <i class="fa-solid fa-envelope text-red-500 text-xl"></i>
+              <div class="text-left">
+                <p class="text-xs text-gray-500">Email Business</p>
+                <p class="font-medium text-gray-800 text-xs">afiliate12@gmail.com</p>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-gray-300"></i>
+          </a>
+
+          <a href="https://www.afiliate12.com" target="_blank" class="w-full flex items-center justify-between p-4 bg-white rounded-xl shadow-sm hover:bg-gray-50 transition">
+            <div class="flex items-center space-x-3">
+              <i class="fa-solid fa-globe text-blue-500 text-xl"></i>
+              <div class="text-left">
+                <p class="text-xs text-gray-500">Website Resmi</p>
+                <p class="font-medium text-gray-800">www.afiliate12.com</p>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-gray-300"></i>
+          </a>
+
+          <a href="https://goo.gl" target="_blank" class="w-full flex items-center justify-between p-4 bg-white rounded-xl shadow-sm hover:bg-gray-50 transition">
+            <div class="flex items-center space-x-3">
+              <i class="fa-solid fa-location-dot text-red-500 text-xl"></i>
+              <div class="text-left">
+                <p class="text-xs text-gray-500">Lokasi Toko</p>
+                <p class="font-medium text-gray-800 text-xs">Klik untuk petunjuk Google Maps</p>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-gray-300"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal Keranjang -->
+  <div id="cart-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-black/50" onclick="toggleCart()"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-white rounded-t-3xl h-[85vh] flex flex-col transform transition-transform duration-300 translate-y-full" id="cart-content">
+      <div class="p-4 border-b flex justify-between items-center">
+        <h3 class="text-lg font-bold text-gray-800">*DAFTAR BELANJA ANDA*</h3>
+        <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+
+      <!-- PESAN KETERANGAN UNTUK PEMBELI -->
+      <div class="px-4 py-3 bg-blue-50 border-b border-blue-100">
+        <p class="text-xs text-blue-700 leading-relaxed">
+          <i class="fa-solid fa-circle-info mr-1"></i>
+          *Mohon periksa kembali pesanan Anda. Setelah mengisi Alamat dan Kode Iklan, Anda akan diarahkan ke WhatsApp untuk proses pesanan dan pembayaran. Admin akan mengirimkan nomor resi setelah pembayaran Anda dikonfirmasi. Silahkan lanjutkan*
+        </p>
+      </div>
+      <!-- Tambahkan ini di atas bagian total pembayaran -->
+      <div class="px-6 py-4 border-t bg-white space-y-4">
+        <!-- Kolom Kode Iklan -->
+        <div>
+          <label class="block text-[10px] font-bold text-gray-400 tracking-wider mb-1">KODE IKLAN VIDEO</label>
+          <input type="text" id="member-code" placeholder="Contoh: CD26H8J3H" class="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 outline-none transition-all text-sm uppercase">
+          <p id="member-error" class="text-red-500 text-[10px] mt-1 hidden italic leading-none">*Wajib diisi untuk melanjutkan pesanan</p>
+        </div>
+
+        <!-- Kolom Alamat -->
+        <div>
+          <label class="block text-[10px] font-bold text-gray-400 tracking-wider mb-1">ALAMAT LENGKAP KAMU DI GOOGLE MAPS</label>
+          <textarea id="address" placeholder="" rows="3" class="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 outline-none transition-all text-sm resize-none"></textarea>
+          <p id="address-error" class="text-red-500 text-[10px] mt-1 hidden italic leading-none">*Wajib di isi untuk tujuan pengiriman</p>
+        </div>
+      </div>
+
+      <div id="cart-items" class="flex-1 overflow-y-auto p-4 space-y-4">
+      </div>
+      <div class="p-6 border-t bg-gray-50 rounded-t-3xl">
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-gray-500">Total Pembayaran</span>
+          <span id="cart-total" class="text-xl font-bold text-blue-600">Rp 0</span>
+        </div>
+        <button onclick="checkout()" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg active:scale-95 transition-transform">
+          KONFIRMASI SEKARANG
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigasi Bawah -->
+  <nav class="fixed-in-frame bottom-0 bg-white border-t border-gray-200 px-6 py-3 z-[60] flex justify-between items-center">
+    <button id="nav-home" onclick="navigate('home')" class="nav-btn text-blue-600 flex flex-col items-center space-y-1">
+      <i class="fa-solid fa-house text-xl"></i>
+      <span class="text-[10px] font-bold">Beranda</span>
+    </button>
+    <button id="nav-wishlist" onclick="navigate('wishlist')" class="nav-btn text-gray-400 flex flex-col items-center space-y-1">
+      <i class="fa-solid fa-heart text-xl"></i>
+      <span class="text-[10px] font-medium">Favorit</span>
+    </button>
+    <div class="relative">
+      <button onclick="toggleCart()" class="relative -mt-10 bg-blue-600 text-white p-4 rounded-full shadow-blue-300 shadow-xl border-4 border-white">
+        <i class="fa-solid fa-cart-shopping text-xl"></i>
+      </button>
+    </div>
+    <button id="nav-music" onclick="navigate('music')" class="nav-btn text-gray-400 flex flex-col items-center space-y-1">
+      <i class="fa-solid fa-music text-xl"></i>
+      <span class="text-[10px] font-medium">Musik</span>
+    </button>
+    <button id="nav-profile" onclick="navigate('profile')" class="nav-btn text-gray-400 flex flex-col items-center space-y-1">
+      <i class="fa-solid fa-user text-xl"></i>
+      <span class="text-[10px] font-medium">Profil</span>
+    </button>
+  </nav>
+
+  <script src="products.js"></script>
+  <script src="music.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
