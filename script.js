@@ -333,3 +333,9 @@ function checkout() {
     toggleCart();
     showNotification("Pesanan dikirim!");
 }
+
+document.addEventListener('contextmenu', event => event.preventDefault());
+  document.onkeydown = function(e) {
+    if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0))) {
+      return false;
+    }
